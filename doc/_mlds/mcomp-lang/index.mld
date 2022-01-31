@@ -1,0 +1,4 @@
+{0 mcomp-lang index}
+{1 Library mcomp-lang}
+The entry point of this library is the module:
+{!module-Mcomp_lang}.

@@ -1,18 +1,18 @@
 open Ast
 exception Semantic_error of Location.code_pos * string
 
-(** returns the type of the Ast.node node *)
+(* returns the type of the Ast.node node *)
 let type_of_node node =
   match node with
   | { node = _; annot = a } -> a
-(** returns the type of the Ast.node node in a function call *)
+(* returns the type of the Ast.node node in a function call *)
 let type_of_node_in_f node =
   match node with
   | { node = _; annot = a } ->
     (match a with
     | TArray(t, _) -> TArray(t, None)
     | t -> t)
-(** returns the type of the variable decl vdecl *)
+(* returns the type of the variable decl vdecl *)
 let type_of_vdecl vdecl =
   match vdecl with
   | (_, typ) -> typ
@@ -57,7 +57,7 @@ let rec find_decl_in_list (list : Ast.typ Ast.member_decl list) loc (decl : Ast.
   | x :: xs ->
     if match_proto_decl x decl then ()
     else find_decl_in_list xs loc decl
-(** returns true if typ is a basic type, false otherwise *)
+(* returns true if typ is a basic type, false otherwise *)
 let check_basic_type (typ : Ast.typ) : bool =
   match typ with
   | TInt
