@@ -20,12 +20,12 @@ for f in $files; do
     name=${f%*.mc}
     echo -ne "Testing $f: "
     if [ -f "$name.out" ]; then
-        ../../_build/default/bin/mcompc.exe $f -O -o $name.bc 2> /dev/null > /dev/null
+        dune exec ../../bin/mcompc.exe -- $f -O -o $name.bc 2> /dev/null > /dev/null
         if [ $? != 0 ]; then
           echo "compilation error"
           break
         else
-          ../../../../../../../LLVM/llvm-project/build/bin/clang $name.bc ../../bin/rt-support.c -o $name 2> comp-$name.out
+          clang $name.bc ../../bin/rt-support.c -o $name 2> comp-$name.out
           if [ $? != 0 ]; then
             echo "clang error"
             break
